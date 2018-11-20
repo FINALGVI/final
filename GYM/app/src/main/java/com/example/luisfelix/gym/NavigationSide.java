@@ -1,5 +1,5 @@
 package com.example.luisfelix.gym;
-
+//Luis Felix
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -50,16 +50,18 @@ public class NavigationSide extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //para que funcione el navigation side
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //para poner las tres rayitas en el toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-      /*  navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
   private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
           = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -110,6 +112,7 @@ public class NavigationSide extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
+        //para que las tres rayitas funcionen
         if (toggle.onOptionsItemSelected(item)) {
             return true;
         }
@@ -121,13 +124,14 @@ public class NavigationSide extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-       /* int id = item.getItemId();
+        //para que funcionene los botones dentro del navigation side
+        int id = item.getItemId();
 
         if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_manage) {
 
-        }*/
+        }
 
         /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);*/
