@@ -8,4 +8,11 @@
     <string name="Fitness_fragment">Fitness</string>
     <string name="Home_fragment">Home</string>
     <string name="Tracking_fragment">Tracking</string>
+
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>
