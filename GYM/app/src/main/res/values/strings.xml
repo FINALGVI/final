@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">GYM</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="app_name">All\'s Gym</string>
+    <string name="title_home">Rutinas</string>
+    <string name="title_dashboard">Salud</string>
+    <string name="title_notifications">Tracking</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="Fitness_fragment">Fitness</string>
-    <string name="Home_fragment">Home</string>
+    <string name="Fitness_fragment">Salud</string>
+    <string name="Home_fragment">Rutinas</string>
     <string name="Tracking_fragment">Tracking</string>
 
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main2">Gym</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
