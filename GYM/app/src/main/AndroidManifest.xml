@@ -21,13 +21,6 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".Settings"
-            android:label="settings">
-            <intent-filter>
-                <action android:name=".Settings"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
