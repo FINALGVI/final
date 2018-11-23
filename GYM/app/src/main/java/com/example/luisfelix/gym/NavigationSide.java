@@ -1,5 +1,6 @@
 package com.example.luisfelix.gym;
 //Luis Felix
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -129,7 +130,10 @@ public class NavigationSide extends AppCompatActivity
 
         if (id == R.id.nav_gallery) {
 
+
         } else if (id == R.id.nav_manage) {
+            Intent in = new Intent(".Settings");
+            startActivity(in);
 
         }
 
