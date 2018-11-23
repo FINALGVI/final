@@ -2,47 +2,95 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFECB3">
+    android:background="@color/background">
 
-    <RelativeLayout
+    <RelativeLayout android:id="@+id/r1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin">
-        <ImageView android:id="@+id/img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_user"
-            android:tint="@color/colorAccent"
-            android:layout_margin="@dimen/activity_horizontal_margin"/>
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <TextView android:id="@+id/txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informacion de usuario"/>
+
+
+        <LinearLayout android:id="@+id/l1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:layout_below="@+id/txt">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_user"
+                android:tint="@color/colorAccent"
+                android:layout_margin="5dp"/>
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre de Usuario">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <android.support.design.button.MaterialButton
+            android:id="@+id/btnguardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/l1"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/colorAccent"
+            android:shadowColor="@color/accenttransparent"
+            android:text="Guardar"
+            android:textColor="@color/background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/btnguardar"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/r1"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toRightOf="@+id/img">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombre de Usuario"
-            android:textSize="20sp"/>
+            android:layout_height="wrap_content">
+            <ImageView android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_info"
+                android:padding="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Información del desarrollador"
+                android:labelFor="@+id/info"
+                android:padding="5dp"/>
+        </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-    </RelativeLayout>
+            android:textAlignment="center"
+            android:text="Karen Arias\tkaren@mail.com \n\n
+Luis Félix\tluis@mail.com \n\n
+Sergio Reyes\tsergio@mail.com"
+            android:fontFamily="@font/opensans"
+            android:textSize="20sp"/>
 
-
-
-
-
-
-
-
+    </LinearLayout>
 
 </RelativeLayout>
