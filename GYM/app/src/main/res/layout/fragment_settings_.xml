@@ -13,37 +13,6 @@
 
         android:layout_margin="@dimen/activity_horizontal_margin">
 
-        <ImageView android:id="@+id/img"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_user"
-            android:tint="@color/colorAccent"
-            android:layout_margin="@dimen/activity_horizontal_margin"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toRightOf="@+id/img">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usuario_nombre"
-                android:textSize="20sp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/nombre"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </android.support.design.widget.TextInputLayout>
-        </LinearLayout>
-    </RelativeLayout>
 
 
         <TextView
@@ -128,9 +97,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans"
-            android:text="Karen Arias\tkaren@mail.com \n\n
-Luis Félix\tluis@mail.com \n\n
-Sergio Reyes\tsergio@mail.com"
+            android:text="Karen Arias\t\tkaren@mail.com \n
+Luis Félix\t\tluis@mail.com \n
+Sergio Reyes\t\tsergio@mail.com"
             android:textAlignment="center"
             android:textSize="20sp" />
 
