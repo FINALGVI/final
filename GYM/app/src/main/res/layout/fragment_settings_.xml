@@ -6,17 +6,23 @@
     android:background="#FFECB3"
     tools:context=".Settings_Frag">
 
+    <RelativeLayout
 
     <RelativeLayout
         android:id="@+id/r1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_margin="@dimen/activity_horizontal_margin">
 
 
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/nombre"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <TextView
+                <android.support.design.widget.TextInputEditText
+
             android:id="@+id/txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,6 +56,7 @@
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
+    </RelativeLayout>
 
         <Button
             android:id="@+id/btnguardar"
@@ -104,4 +111,5 @@ Sergio Reyes\t\tsergio@mail.com"
             android:textSize="20sp" />
 
     </LinearLayout>
+
 </RelativeLayout>
