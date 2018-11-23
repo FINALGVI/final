@@ -18,8 +18,14 @@
         app:itemTextColor="@color/item_color"
         app:menu="@menu/navigation" />
 
+ <!--   <include layout="@layout/toolbar2"
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></include>-->
+
       <FrameLayout
           android:id="@+id/main_fragment"
+          android:layout_below="@id/toolbar2"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:layout_above="@id/navigation"

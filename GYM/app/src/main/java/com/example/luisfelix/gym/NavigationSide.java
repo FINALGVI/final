@@ -1,37 +1,34 @@
 package com.example.luisfelix.gym;
 //Luis Felix
-import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class NavigationSide extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Settings_Frag.OnFragmentInteractionListener{
 
-  private BottomNavigationView navigation;
   private FrameLayout mMainFrame;
   private Home_Frag home_frag;
   private Fitness_Frag fitness_frag;
   private Tracking_Frag tracking_frag;
+  private Settings_Frag setting_frag;
+  private ActionBarDrawerToggle toggle;
+  private NavigationView navigationView;
+  private BottomNavigationView navigation;
+  private Toolbar toolbar;
 
-    private DrawerLayout drawer;
-    private ActionBarDrawerToggle toggle;
-    private NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +39,17 @@ public class NavigationSide extends AppCompatActivity
 
         mMainFrame=(FrameLayout) findViewById(R.id.main_fragment);
         //Aqui estan los fragment
-         home_frag=new Home_Frag();
-         fitness_frag=new Fitness_Frag();
-         tracking_frag=new Tracking_Frag();
-         //esto es para que inice el primer fragmento como default
-         setFragment(home_frag);
+        home_frag=new Home_Frag();
+        fitness_frag=new Fitness_Frag();
+        tracking_frag=new Tracking_Frag();
+        //esto es para que inice el primer fragmento como default
+        setFragment(home_frag);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //para que funcione el navigation side
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -97,12 +94,12 @@ public class NavigationSide extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-      /*  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }*/
+        }
     }
 
     @Override
@@ -126,19 +123,30 @@ public class NavigationSide extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         //para que funcionene los botones dentro del navigation side
+
         int id = item.getItemId();
+        boolean selected=false;
 
-        if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_info) {
+            //setFragment(setting_frag);
+            setting_frag=new Settings_Frag();
+            selected=true;
 
-
-        } else if (id == R.id.nav_manage) {
-            Intent in = new Intent(".Settings");
-            startActivity(in);
-
+        }else if (id == R.id.nav_manage ) {
+           //setFragment(setting_frag);
         }
 
-        /*DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);*/
+        if(selected==true){
+           setFragment(setting_frag);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
