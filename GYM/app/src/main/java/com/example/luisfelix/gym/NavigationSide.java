@@ -129,11 +129,11 @@ public class NavigationSide extends AppCompatActivity
 
         if (id == R.id.nav_info) {
             //setFragment(setting_frag);
-            setting_frag=new Settings_Frag();
-            selected=true;
 
         }else if (id == R.id.nav_manage ) {
            //setFragment(setting_frag);
+            setting_frag=new Settings_Frag();
+            selected=true;
         }
 
         if(selected==true){
