@@ -44,11 +44,12 @@
                         android:id="@+id/imgAgua"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
+                        android:layout_centerVertical="true"
                         android:src="@drawable/agua"
-                        android:tint="#abcdef"
-                        android:layout_centerVertical="true"/>
+                        android:tint="#abcdef" />
 
-                    <RelativeLayout android:id="@+id/r1"
+                    <RelativeLayout
+                        android:id="@+id/r1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/imgAgua">
@@ -58,40 +59,43 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
                             android:text="Agua tomada hoy:"
-                            android:textSize="20sp"
-                            android:layout_centerHorizontal="true"/>
+                            android:textSize="20sp" />
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/nombreAgua"
                             android:layout_centerHorizontal="true">
+
                             <Button
                                 android:id="@+id/btnAgua_menos"
+                                style="@style/Base.Widget.AppCompat.Button.Borderless"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:textSize="25sp"
-                                android:textColor="@color/colorAccent"
                                 android:text="-"
-                                style="@style/Base.Widget.AppCompat.Button.Borderless" />
+                                android:textColor="@color/colorAccent"
+                                android:textSize="25sp" />
+
                             <TextView
                                 android:id="@+id/CantidadAgua"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10dp"
-                                android:textSize="25sp"
+                                android:layout_toRightOf="@+id/btnAgua_menos"
                                 android:text="0"
-                                android:layout_toRightOf="@+id/btnAgua_menos"/>
+                                android:textSize="25sp" />
+
                             <Button
                                 android:id="@+id/btnAgua_mas"
+                                style="@style/Base.Widget.AppCompat.Button.Borderless"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:textSize="25sp"
-                                android:textColor="@color/colorAccent"
+                                android:layout_toRightOf="@+id/CantidadAgua"
                                 android:text="+"
-                                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                                android:layout_toRightOf="@+id/CantidadAgua"/>
+                                android:textColor="@color/colorAccent"
+                                android:textSize="25sp" />
                         </RelativeLayout>
                     </RelativeLayout>
                 </RelativeLayout>
@@ -123,9 +127,9 @@
                         android:id="@+id/imagenPeso"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
+                        android:layout_marginEnd="10dp"
                         android:src="@drawable/peso"
-                        android:tint="#0edcba"
-                        android:layout_marginEnd="10dp"/>
+                        android:tint="#0edcba" />
 
                     <EditText
                         android:id="@+id/editPeso"
@@ -149,7 +153,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <RelativeLayout
+                <RelativeLayout android:id="@+id/l1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp">
@@ -158,9 +162,9 @@
                         android:id="@+id/imgDormir"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
+                        android:layout_centerVertical="true"
                         android:src="@drawable/dormir"
-                        android:tint="#80deea"
-                        android:layout_centerVertical="true"/>
+                        android:tint="#80deea" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -176,7 +180,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
                             android:text="Horas Dormidas"
-                            android:textSize="25dp" />
+                            android:textSize="20dp" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -202,5 +206,15 @@
             </android.support.design.card.MaterialCardView>
 
         </android.support.constraint.ConstraintLayout>
+
     </ScrollView>
+    <android.support.design.button.MaterialButton
+        android:id="@+id/btnguardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Guardar"
+        android:textColor="@color/background"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>
