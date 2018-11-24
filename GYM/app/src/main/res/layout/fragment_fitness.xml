@@ -2,19 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/agregarfitness_fragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/agregarfitness_fragment">
+    android:layout_height="match_parent">
 
-    <ScrollView android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -41,49 +41,59 @@
                     android:padding="16dp">
 
                     <ImageView
-                        android:id="@+id/imagenAgua"
+                        android:id="@+id/imgAgua"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
-                        android:src="@drawable/ic_agenda"
-                        android:tint="#FF5733" />
+                        android:src="@drawable/agua"
+                        android:tint="#abcdef"
+                        android:layout_centerVertical="true"/>
 
-                    <TextView
-                        android:id="@+id/nombreAgua"
-                        android:layout_width="wrap_content"
+                    <RelativeLayout android:id="@+id/r1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imagenAgua"
-                        android:text="Introduce la cantidad de vasos de agua tomado"
-                        android:textSize="20sp" />
+                        android:layout_toRightOf="@+id/imgAgua">
 
-                    <TextView
-                        android:id="@+id/CantidadAgua"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/nombreAgua"
-                        android:layout_marginLeft="55dp"
-                        android:layout_toRightOf="@id/btnAgua_menos" />
+                        <TextView
+                            android:id="@+id/nombreAgua"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:text="Agua tomada hoy:"
+                            android:textSize="20sp"
+                            android:layout_centerHorizontal="true"/>
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/btnAgua_mas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/nombreAgua"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/imagenAgua"
-                        android:clickable="true"
-                        android:src="@android:drawable/ic_menu_add" />
-
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/btnAgua_menos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/nombreAgua"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/btnAgua_mas"
-                        android:clickable="true"
-                        android:src="@android:drawable/ic_menu_rotate" />
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/nombreAgua"
+                            android:layout_centerHorizontal="true">
+                            <Button
+                                android:id="@+id/btnAgua_menos"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textSize="25sp"
+                                android:textColor="@color/colorAccent"
+                                android:text="-"
+                                style="@style/Base.Widget.AppCompat.Button.Borderless" />
+                            <TextView
+                                android:id="@+id/CantidadAgua"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10dp"
+                                android:textSize="25sp"
+                                android:text="0"
+                                android:layout_toRightOf="@+id/btnAgua_menos"/>
+                            <Button
+                                android:id="@+id/btnAgua_mas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:textSize="25sp"
+                                android:textColor="@color/colorAccent"
+                                android:text="+"
+                                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                                android:layout_toRightOf="@+id/CantidadAgua"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
             </android.support.design.card.MaterialCardView>
 
@@ -104,8 +114,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cv_fitness">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp">
 
@@ -113,41 +123,17 @@
                         android:id="@+id/imagenPeso"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
-                        android:src="@drawable/ic_agenda"
-                        android:tint="#FF5733" />
-
-                    <TextView
-                        android:id="@+id/nombrePeso"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imagenPeso"
-                        android:text="Introduce tu peso"
-                        android:textSize="20sp" />
+                        android:src="@drawable/peso"
+                        android:tint="#0edcba"
+                        android:layout_marginEnd="10dp"/>
 
                     <EditText
                         android:id="@+id/editPeso"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/nombrePeso"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="13dp"
-                        android:layout_toRightOf="@id/btnPeso"
                         android:hint="Introduce tu peso"
                         android:textAlignment="center" />
-
-                    <Button
-                        android:id="@+id/btnPeso"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/nombrePeso"
-                        android:layout_marginLeft="10dp"
-                        android:text="Guardar"
-                        android:layout_marginTop="27dp"
-                        android:layout_toRightOf="@id/imagenPeso" />
-
-                </RelativeLayout>
+                </LinearLayout>
             </android.support.design.card.MaterialCardView>
 
             <android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -164,58 +150,56 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp">
 
                     <ImageView
-                        android:id="@+id/imagenDormir"
+                        android:id="@+id/imgDormir"
                         android:layout_width="58dp"
                         android:layout_height="58dp"
-                        android:src="@drawable/ic_agenda"
-                        android:tint="#FF5733" />
+                        android:src="@drawable/dormir"
+                        android:tint="#80deea"
+                        android:layout_centerVertical="true"/>
 
-                    <TextView
-                        android:id="@+id/nombreDormir"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@+id/imagenDormir"
-                        android:text="Introducir la canidad de horas dormidas"
-                        android:textSize="20sp" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="18dp"
+                        android:layout_toRightOf="@+id/imgDormir"
+                        android:padding="16dp">
 
-                    <TextView
-                        android:id="@+id/CantidadDormir"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/nombreDormir"
-                        android:layout_marginLeft="55dp"
-                        android:layout_toRightOf="@id/btnDormir_menos" />
+                        <TextView
+                            android:id="@+id/txtHoras"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:text="Horas Dormidas"
+                            android:textSize="25dp" />
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/btnDormir_mas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/nombreDormir"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/imagenDormir"
-                        android:clickable="true"
-                        android:src="@android:drawable/ic_menu_add" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtHoras">
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/btnDormir_menos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/nombreDormir"
-                        android:layout_marginLeft="10dp"
-                        android:layout_toRightOf="@id/btnDormir_mas"
-                        android:clickable="true"
-                        android:src="@android:drawable/ic_menu_rotate" />
+                            <EditText
+                                android:id="@+id/editLevantarse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="levantarse"
+                                android:padding="10dp" />
 
+                            <EditText
+                                android:id="@+id/editAcostarse"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:hint="acostarse"
+                                android:padding="10dp" />
+                        </LinearLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
             </android.support.design.card.MaterialCardView>
-
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

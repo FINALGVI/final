@@ -54,16 +54,9 @@ public class Fitness_Frag extends Fragment {
             }
         });
 
-        botonPeso=v.findViewById(R.id.btnPeso);
         editPeso=v.findViewById(R.id.editPeso);
 
-        botonPeso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                peso=Integer.parseInt(editPeso.getText().toString());
 
-            }
-        });
 
 
 
