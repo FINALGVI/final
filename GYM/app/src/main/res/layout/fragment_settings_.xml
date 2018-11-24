@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#FFECB3"
+    android:background="@color/background"
     tools:context=".Settings_Frag">
 
 
@@ -10,10 +10,7 @@
         android:id="@+id/r1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_margin="@dimen/activity_horizontal_margin">
-
-
 
         <TextView
             android:id="@+id/txt"
@@ -22,23 +19,23 @@
             android:text="Informacion de usuario" />
 
 
-        <LinearLayout
+        <LinearLayout android:id="@+id/l1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toRightOf="@+id/img">
+            android:layout_below="@+id/txt">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/usuario_nombre"
-                android:textSize="20sp" />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_user"
+                android:layout_margin="5dp"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/nombre"
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="@string/usuario_nombre">
 
                 <android.support.design.widget.TextInputEditText
                     android:layout_width="match_parent"
@@ -53,7 +50,6 @@
             android:layout_below="@+id/l1"
             android:layout_centerHorizontal="true"
             android:backgroundTint="@color/colorAccent"
-            android:shadowColor="@color/accenttransparent"
             android:text="Guardar"
             android:textColor="@color/background" />
 
