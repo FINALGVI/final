@@ -24,6 +24,7 @@ public class NavigationSide extends AppCompatActivity
   private Fitness_Frag fitness_frag;
   private Tracking_Frag tracking_frag;
   private Settings_Frag setting_frag;
+  private App_Info_Frag app_info_frag;
   private ActionBarDrawerToggle toggle;
   private NavigationView navigationView;
   private BottomNavigationView navigation;
@@ -132,18 +133,19 @@ public class NavigationSide extends AppCompatActivity
         boolean selected=false;
 
         if (id == R.id.nav_info) {
-            //setFragment(setting_frag);
-
+            app_info_frag = new App_Info_Frag();
+            setFragment(app_info_frag);
 
         }else if (id == R.id.nav_manage ) {
-           //setFragment(setting_frag);
+
             setting_frag=new Settings_Frag();
-            selected=true;
+            setFragment(setting_frag);
+//            selected=true;
         }
 
-        if(selected==true){
-           setFragment(setting_frag);
-        }
+//        if(selected==true){
+//           setFragment(setting_frag);
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

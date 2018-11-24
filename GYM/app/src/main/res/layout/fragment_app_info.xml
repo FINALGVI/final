@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
-    android:orientation="vertical">
+    tools:context=".App_Info_Frag">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,8 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/opensans"
-        android:text="All's Gym\n
-©2018"
+        android:text="All's Gym\nVersión: 1.0\n©2018"
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_centerInParent="true"/>
