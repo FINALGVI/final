@@ -9,6 +9,8 @@ public class BDD extends SQLiteOpenHelper {
     //String que contiene el Query para crear la BDD
     public String crearTabla = "Create table Rutinas(idRutina integer Primary Key autoincrement, nombreRutina text, rutinaPiernas text, rutinaBrazos text, rutinaPecho text, rutinaEspalda text, rutinaDescripcion)";
 
+    public String crearTabla2 = "Create table Salud(id integer primary key autoincrement, agua text, peso text, dormir text, fecha text)";
+
     public BDD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -17,6 +19,7 @@ public class BDD extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(crearTabla);
+        db.execSQL(crearTabla2);
     }
 
     //Al actualizar la base de datos (onUpgrade) se ejecuta eese pedazo de codigo (DROP TABLE y posteirormente la crea de nuevo)
@@ -25,5 +28,7 @@ public class BDD extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE if exists Rutinas");
         db.execSQL(crearTabla);
 
+        db.execSQL("DROP TABLE if exists Salud");
+        db.execSQL(crearTabla2);
     }
 }
