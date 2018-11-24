@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,7 +21,10 @@ public class Fitness_Frag extends Fragment {
 
     FloatingActionButton masAgua, menosAgua;
     TextView textAgua;
-    int contador=0;
+    Button botonPeso;
+    EditText editPeso;
+    int contadorAgua=0;
+    int peso;
 
     public Fitness_Frag() {
         // Required empty public constructor
@@ -38,17 +42,30 @@ public class Fitness_Frag extends Fragment {
         masAgua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    contador++;
-                    textAgua.setText(" "+contador);
+                    contadorAgua++;
+                    textAgua.setText(" "+contadorAgua);
             }
         });
         menosAgua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contador--;
-                textAgua.setText(" "+contador);
+                contadorAgua--;
+                textAgua.setText(" "+contadorAgua);
             }
         });
+
+        botonPeso=v.findViewById(R.id.btnPeso);
+        editPeso=v.findViewById(R.id.editPeso);
+
+        botonPeso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                peso=Integer.parseInt(editPeso.getText().toString());
+
+            }
+        });
+
+
 
         return v;
     }
