@@ -1,6 +1,7 @@
 package com.example.luisfelix.gym;
 
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -36,6 +39,10 @@ public class AgendarRutina2 extends Fragment {
     public FrameLayout layoutAgregarRutina;
     public SQLiteDatabase db;
     public View v;
+    public String referencia;
+    public Boolean bundleEdit, cfm;
+    public Bundle contenido;
+    public Cursor c;
 
     @Nullable
     @Override
@@ -70,42 +77,132 @@ public class AgendarRutina2 extends Fragment {
         BDD con = new BDD(v.getContext(), "Rutinas", null, 1);
         db = con.getWritableDatabase();
 
+        /*
+        *
+        *  --- Me atrapa los argumentos o Bundles de los fragment que se estén pasando. En caso de no
+        *  capturar ninguno, se queda siendo NULL, dando lugar a un NPE.
+        *
+         */
+        contenido = getArguments();
+
+        /*
+        *
+        * --- En caso de que contenido no sea null, se sobreentiende que se ha seleccionado editar una rutina desde el Fragment "información"
+        * por lo que el texto del botón "ACEPTAR" pasa a ser "GUARDAR CAMBIOS" (dando referencia a una edición).
+        *
+         */
+
+        if (contenido != null)
+        {
+
+            btnAceptarRutina.setText("GUARDAR CAMBIOS");
+
+            /*
+             *
+             * --- Si el Boolean con el Key "editConf" se envía satisfactoriametne desde el Fragment información
+             * al Fragment AgendarRutina, entonces los datos correspondientes se llenan por sí solos en el formulario luego de ser capturados.
+             * Se utiliza como un comprobante de que todo esté funcionando correctamente.
+             *
+             */
+
+            bundleEdit = contenido.getBoolean("editConf");
+
+
+            if (bundleEdit)
+            {
+                referencia = getArguments().getString("rutinaNombre");
+                editNombreRutina.setText(contenido.getString("rutinaNombre"));
+                editPiernas.setText(contenido.getString("rutinaPiernas"));
+                editBrazos.setText(contenido.getString("rutinaBrazos"));
+                editPecho.setText(contenido.getString("rutinaPecho"));
+                editEspalda.setText(contenido.getString("rutinaEspalda"));
+                editDescripcion.setText(contenido.getString("rutinaDescripcion"));
+            }
+
+        }
+
         btnAceptarRutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //Boolean cfm = false, cfm2 = false, cfm3 = false, cfm4 = false, cfm5 = false, cfm6 = false;
 
-                /*Me confirma que el nombre de la rutina tenga al menos 4 letras (por favor, poner el resto de condiciones..
-                o quitarlas si lo ven oportuno, tengo demasiado sueño*/
+                /*
+                *
+                * --- Se declara el Home_Frag que se usará luego para poder moverse al Home nuevamente después de ingresar la Rutina.
+                * --- Se le asigna el valor true al Boolean CFM que se usa para comprobar el estado del campo nombreTitulo que se usa
+                * como si fuera la PrimaryKey a la hora de trabajar con los datos.
+                *
+                * */
 
-                if(editNombreRutina.getText().toString().length() >= 4)
+                Home_Frag h = new Home_Frag();
+                Cursor c = db.rawQuery("SELECT  nombreRutina, rutinaDescripcion FROM Rutinas", null);
+                cfm = true;
+
+                /*
+                *
+                * --- Se utiliza un bucle con el Cursor C para evaluar los nombres de rutinas que ya están en la BDD, así
+                * no se repetirá ningún nombre y no habrá inconsistencia de datos.
+                * --- En caso de que haya un nombre repetido, el valor de CFM pasa a ser False, por lo que no se podrá
+                * registrar la rutina de manera satisfactoria.
+                * --- Este bucle es válido tanto en el caso de editar una rutina o agregar una nueva.
+                *
+                 */
+
+                while (c.moveToNext())
                 {
-                    //cfm = true;
-                } else
-                {
-                    Toast t1 = Toast.makeText(v.getContext(), "El nombre es muy corto. Debe ingresar uno con al menos 4 carácteres", Toast.LENGTH_LONG);
-                    t1.setGravity(Gravity.CENTER, 0, 0);
+                    if(c.getString(0).equals(editNombreRutina.getText().toString()) || editNombreRutina.getText().toString().length() <= 3)
+                    {
+                        Toast t1 = Toast.makeText(v.getContext(), "Una rutina con este nombre ya existe o el nombre es muy corto", Toast.LENGTH_LONG);
+                        t1.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                        t1.show();
+                        cfm = false;
+                        break;
+                    }
                 }
 
-                //Me inserta el valor de cada campo en la base de datos
+                /*
+                 *
+                 * --- En caso de que contenido no sea null, se sobreentiende que se ha seleccionado editar una rutina desde el Fragment "información"
+                 * por lo que se ejecuta un UPDATE sobre los datos luego de confirmar el valor del Boolean CFM, así no se agregará una rutina nueva,
+                 * sino que se actualizará la actual. El boolean almacenado en bundleEdit pasará a ser false nuevamente (valor original) para mantener
+                 * la consistencia del proceso.
+                 *
+                 */
 
-                db.execSQL("INSERT INTO Rutinas(nombreRutina, rutinaPiernas, rutinaBrazos, rutinaPecho, rutinaEspalda, rutinaDescripcion) VALUES ('"
-                        + editNombreRutina.getText().toString() +
-                        "', '" + editPiernas.getText().toString() + "', '" + editBrazos.getText().toString()+
-                        "', '" + editPecho.getText().toString() + "', '" + editEspalda.getText().toString() +
-                        "', '" + editDescripcion.getText().toString() + "')");
-                Home_Frag h = new Home_Frag();
-                h.initializeData(v.getContext());
+                if (contenido != null)
+                {
+                    if (bundleEdit && cfm)
+                    {
+                        bundleEdit = false;
 
-                //A partir de aquí programa lo que te dije
+                        db.execSQL("UPDATE Rutinas SET nombreRutina ='" + editNombreRutina.getText().toString() + "', rutinaPiernas = '"
+                                + editPiernas.getText().toString() + "', rutinaBrazos = '" + editBrazos.getText().toString() + "', rutinaPecho = '" + editPecho.getText().toString() + "', rutinaEspalda = '"
+                                + editDescripcion.getText().toString() + "', rutinaDescripcion = '" + editDescripcion.getText().toString() + "' WHERE nombreRutina = '" + referencia + "'");
+                        h.initializeData(v.getContext());
+                    }
 
-                Home_Frag home=new Home_Frag();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.main_fragment, home);
+                /*
+                *
+                * -- De otra forma (en caso de que bundleEdit no se esté tomando en cuenta, y por ende, no se haya ejecutado
+                * la acción "Editar" desde el fragment información, se insertará una nueva rutina porque se sobreentiende que
+                * se ha seleccionado el botón NUEVA RUTINA.
+                *
+                 */
 
-                ft.addToBackStack(null);
-                ft.commit();
+                } else if (cfm)
+                {
+                    db.execSQL("INSERT INTO Rutinas(nombreRutina, rutinaPiernas, rutinaBrazos, rutinaPecho, rutinaEspalda, rutinaDescripcion) VALUES ('"
+                            + editNombreRutina.getText().toString() +
+                            "', '" + editPiernas.getText().toString() + "', '" + editBrazos.getText().toString()+
+                            "', '" + editPecho.getText().toString() + "', '" + editEspalda.getText().toString() +
+                            "', '" + editDescripcion.getText().toString() + "')");
+                    h.initializeData(v.getContext());
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.main_fragment, h);
+
+                    ft.addToBackStack(null);
+                    ft.commit();
+                }
 
             }
         });

@@ -26,7 +26,7 @@ import java.util.List;
 public class Home_Frag extends Fragment {
 
     public RecyclerView rv;
-    public Button btnNuevoEvento;
+    public Button btnNuevaRutina;
     public LinearLayout linearMain;
     public CardView cv;
     public List<Rutina> rutinas;
@@ -42,14 +42,23 @@ public class Home_Frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //Toma el RecyclerView, el cual va reciclando los CardViews para luego mostrarlos al inflar el contenido del Layout
+        /*
+        *
+        * --- Toma el RecyclerView, el cual va reciclando los CardViews para luego mostrarlos al inflar el contenido del Layout
+        *
+         */
         v = inflater.inflate(R.layout.recycler, container, false);
 
         rv=(RecyclerView) v.findViewById(R.id.rv);
-        btnNuevoEvento = v.findViewById(R.id.nuevaRutina);
+        btnNuevaRutina = v.findViewById(R.id.nuevaRutina);
         linearMain = v.findViewById(R.id.linearLayout);
 
-        //LayoutManager necesario para correr el RecyclerView
+        /*
+        *
+        * --- LayoutManager que se utiliza dependiendo del tipo de Layout en el que esté incrustado
+        * el RecyclerView. Su función es establecer un orden de aparición a los elementos del RecyclerView
+        *
+         */
         LinearLayoutManager llm = new LinearLayoutManager(this.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
@@ -57,12 +66,17 @@ public class Home_Frag extends Fragment {
         initializeData(v.getContext());
         initializeAdapter();
 
-        //Pedazo de código que tira error porque no sé setear un fragmento. Luis help pls.
-        btnNuevoEvento.setOnClickListener(new View.OnClickListener() {
+        /*
+        *
+        * --- OnClickListener que tiene en escucha al botón NuevaRutina. En caso de que el evento
+        * se ejecute, se instancia el fragment del Agendador de Rutinas y posteriormente es iniciado
+        *
+         */
+        btnNuevaRutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                AgendarRutina2 agendarRutina2=new AgendarRutina2();
+                AgendarRutina2 agendarRutina2 = new AgendarRutina2();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.main_fragment, agendarRutina2);
 
@@ -78,13 +92,22 @@ public class Home_Frag extends Fragment {
     }
 
     /*
-    Método que conecta con la base de datos. Requiere un parámetro de tipo Context.
-    Lo creo de esta manera porque puede que sea necesario conectar con la base de datos
-    en otras clases, y los contextos de otras clases o fragmentos no son iguales, por
-    lo cual es más eficiente que el método tome un parámetro context, el cual puede
-    ser de diferentes clases y trabaje en base a él
+    * --- Método que conecta con la base de datos. Requiere un parámetro de tipo Context.
+    * --- Lo creo de esta manera porque puede que sea necesario conectar con la base de datos
+    * en otras clases, y los contextos de otras clases o fragmentos no son iguales, por
+    * lo cual es más eficiente que el método tome un parámetro context, el cual puede
+    * ser de diferentes clases y trabaje en base a él
      */
     void initializeData(Context context){
+
+        /*
+        *
+        * --- Método donde se inicializan los datos. Se inicia una conexión a la base de datos, para
+        * luego traer los datos y agregarlos al ArrayList rutinas para que puedan ser vistos
+        * dentro del RecyclerView, y por ende, los CardViews.
+        *
+         */
+
         BDD con = new BDD(context, "Rutinas", null, 1);
         db = con.getWritableDatabase();
         rutinas = new ArrayList<>();
