@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    android:background="#FFF"
+    app:cardCornerRadius="6px"
+    android:id="@+id/cv">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:id="@+id/imagenRutina"
+            android:src="@drawable/ic_agenda"
+            android:tint="#FF5733"/>
+
+        <TextView
+            android:id="@+id/nombreRutina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imagenRutina"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/rutinaDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@+id/nombreRutina"
+            android:layout_toRightOf="@id/imagenRutina"/>
+    </RelativeLayout>
+</android.support.design.card.MaterialCardView>
+

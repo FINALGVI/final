@@ -45,8 +45,12 @@ public class NavigationSide extends AppCompatActivity
         //esto es para que inice el primer fragmento como default
         setFragment(home_frag);
 
+      /*
+        si activan entonces tendran que activar el toolbar en el navigation side xml
+        vendran erroes
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);*/
 
         //para que funcione el navigation side
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -129,11 +133,11 @@ public class NavigationSide extends AppCompatActivity
 
         if (id == R.id.nav_info) {
             //setFragment(setting_frag);
+            setting_frag=new Settings_Frag();
+            selected=true;
 
         }else if (id == R.id.nav_manage ) {
            //setFragment(setting_frag);
-            setting_frag=new Settings_Frag();
-            selected=true;
         }
 
         if(selected==true){
