@@ -96,7 +96,8 @@ public class Fitness_Frag extends Fragment {
 
                 String hora = dormido(ac, al);//calcular el tiempo dormido
 
-                agregar(agua, peso, hora);//agrega a la base de datos
+                if (!hora.equals(""))
+                    agregar(agua, peso, hora);//agrega a la base de datos
 
             }
         });
@@ -106,18 +107,32 @@ public class Fitness_Frag extends Fragment {
     public String dormido(String ac, String al){
         DateFormat df = new SimpleDateFormat("hh:mm");
         Date time1, time2;
+        int milis=0, segundos, minutos, horas;
+        String time="";
+
         try{
             time1 = df.parse(ac);
             time2 = df.parse(al);
+            milis = (int) (time1.getTime()-time2.getTime());
+
+            segundos=milis/1000;
+            horas = segundos/3600;
+            segundos-=(horas*3600);
+            minutos = segundos/60;
+
+            time=horas+" horas y "+minutos+" minutos";
         }catch(Exception e){
             Toast toast1 =
                     Toast.makeText(v.getContext(),
-                            "No se puede obtener las horas", Toast.LENGTH_SHORT);
+                            "No se puede obtener las horas dormidas", Toast.LENGTH_SHORT);
 
             toast1.show();
         }
+        Toast toast1 =
+                Toast.makeText(v.getContext(),
+                        time, Toast.LENGTH_LONG);
 
-        String time="";
+        toast1.show();
         return time;
     }
 
