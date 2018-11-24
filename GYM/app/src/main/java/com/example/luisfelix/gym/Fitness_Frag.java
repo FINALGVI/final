@@ -18,7 +18,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 
@@ -88,14 +91,37 @@ public class Fitness_Frag extends Fragment {
             public void onClick(View v) {
                 String agua = textAgua.getText().toString();
                 String peso = editPeso.getText().toString();
-                String hora = editAcostarse.getText().toString();
-                agregar(agua, peso, hora);
+                String ac = editAcostarse.getText().toString();
+                String al = editLevantarse.getText().toString();
+
+                String hora = dormido(ac, al);//calcular el tiempo dormido
+
+                agregar(agua, peso, hora);//agrega a la base de datos
+
             }
         });
         return v;
     }
 
-    public void agregar(String agua, String peso, String horas){
+    public String dormido(String ac, String al){
+        DateFormat df = new SimpleDateFormat("hh:mm");
+        Date time1, time2;
+        try{
+            time1 = df.parse(ac);
+            time2 = df.parse(al);
+        }catch(Exception e){
+            Toast toast1 =
+                    Toast.makeText(v.getContext(),
+                            "No se puede obtener las horas", Toast.LENGTH_SHORT);
+
+            toast1.show();
+        }
+
+        String time="";
+        return time;
+    }
+
+    public void agregar(String agua, String peso, String hora){
         Toast toast1 =
                 Toast.makeText(v.getContext(),
                         "yay", Toast.LENGTH_SHORT);

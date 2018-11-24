@@ -194,10 +194,10 @@
                                 android:layout_height="wrap_content"
                                 android:hint="acostarse"
                                 android:padding="10dp"
-                                android:onClick="time"
-                                android:clickable="true"
+                                <!--android:onClick="time"-->
+                                <!--android:clickable="true"-->
                                 android:inputType="time"/>
-                            
+
                             <EditText
                                 android:id="@+id/editLevantarse"
                                 android:layout_width="wrap_content"
