@@ -93,10 +93,14 @@ public class Fitness_Frag extends Fragment {
                 String peso = editPeso.getText().toString();
                 String ac = editAcostarse.getText().toString();
                 String al = editLevantarse.getText().toString();
+                String hora = "";
 
-                String hora = dormido(ac, al);//calcular el tiempo dormido
+                if (!ac.equals("")||!al.equals("")){
+                    hora = dormido(ac, al);//calcular el tiempo dormido
 
-                if (!hora.equals(""))
+                }
+
+
                     agregar(agua, peso, hora);//agrega a la base de datos
 
             }
@@ -113,7 +117,8 @@ public class Fitness_Frag extends Fragment {
         try{
             time1 = df.parse(ac);
             time2 = df.parse(al);
-            milis = (int) (time1.getTime()-time2.getTime());
+            milis = (int) (time2.getTime()-time1.getTime());
+            if (milis<0) milis*=-1; //la respuesta siempre sera positiva
 
             segundos=milis/1000;
             horas = segundos/3600;
@@ -125,23 +130,38 @@ public class Fitness_Frag extends Fragment {
             Toast toast1 =
                     Toast.makeText(v.getContext(),
                             "No se puede obtener las horas dormidas", Toast.LENGTH_SHORT);
-
             toast1.show();
         }
-        Toast toast1 =
-                Toast.makeText(v.getContext(),
-                        time, Toast.LENGTH_LONG);
-
-        toast1.show();
+        
         return time;
     }
 
     public void agregar(String agua, String peso, String hora){
-        Toast toast1 =
-                Toast.makeText(v.getContext(),
-                        "yay", Toast.LENGTH_SHORT);
 
-        toast1.show();
+        try{
+            DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+            Date date = new Date();
+
+            Cursor c = db.rawQuery("select * from Salud where fecha=current_date",null);
+            if(!c.moveToFirst()){
+                db.execSQL("insert into Salud(agua,peso,dormir,fecha) " +
+                        "values('" + agua + "','" + peso + "','"+hora+"',current_date)");
+            }else {
+                db.execSQL("update Salud set agua='"+agua+"',peso='"+peso+"',dormir='"+hora+"' where fecha=current_date");
+            }
+
+            Toast toast1 =
+                    Toast.makeText(v.getContext(),
+                            "Guardado con exito", Toast.LENGTH_SHORT);
+            toast1.show();
+
+        }catch (Exception e){
+            Toast toast1 =
+                    Toast.makeText(v.getContext(),
+                            "No se pudo guardar", Toast.LENGTH_SHORT);
+            toast1.show();
+        }
+
 
     }
 

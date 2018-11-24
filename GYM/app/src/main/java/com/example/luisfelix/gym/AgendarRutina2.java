@@ -39,7 +39,7 @@ public class AgendarRutina2 extends Fragment {
     public FrameLayout layoutAgregarRutina;
     public SQLiteDatabase db;
     public View v;
-    public String referencia;
+    public String referencia, nombreRutinaQuery;
     public Boolean bundleEdit, cfm;
     public Bundle contenido;
     public Cursor c;
@@ -148,15 +148,18 @@ public class AgendarRutina2 extends Fragment {
                 *
                  */
 
-                while (c.moveToNext())
+                if (contenido == null)
                 {
-                    if(c.getString(0).equals(editNombreRutina.getText().toString()) || editNombreRutina.getText().toString().length() <= 3)
+                    while (c.moveToNext())
                     {
-                        Toast t1 = Toast.makeText(v.getContext(), "Una rutina con este nombre ya existe o el nombre es muy corto", Toast.LENGTH_LONG);
-                        t1.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
-                        t1.show();
-                        cfm = false;
-                        break;
+                        if(c.getString(0).equals(editNombreRutina.getText().toString()) || editNombreRutina.getText().toString().length() <= 3)
+                        {
+                            Toast t1 = Toast.makeText(v.getContext(), "Una rutina con este nombre ya existe o el nombre es muy corto", Toast.LENGTH_LONG);
+                            t1.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                            t1.show();
+                            cfm = false;
+                            break;
+                        }
                     }
                 }
 
@@ -171,14 +174,32 @@ public class AgendarRutina2 extends Fragment {
 
                 if (contenido != null)
                 {
+
+                    Cursor c2 = db.rawQuery("SELECT  nombreRutina FROM Rutinas WHERE nombreRutina != '" + referencia + "'" , null);
+
+                    while (c2.moveToNext())
+                    {
+                        if(c2.getString(0).equals(editNombreRutina.getText().toString()) || editNombreRutina.getText().toString().length() <= 3)
+                        {
+                            Toast t1 = Toast.makeText(v.getContext(), "Una rutina con este nombre ya existe o el nombre es muy corto", Toast.LENGTH_LONG);
+                            t1.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 0);
+                            t1.show();
+                            cfm = false;
+                            break;
+                        }
+                    }
+
                     if (bundleEdit && cfm)
                     {
-                        bundleEdit = false;
-
                         db.execSQL("UPDATE Rutinas SET nombreRutina ='" + editNombreRutina.getText().toString() + "', rutinaPiernas = '"
                                 + editPiernas.getText().toString() + "', rutinaBrazos = '" + editBrazos.getText().toString() + "', rutinaPecho = '" + editPecho.getText().toString() + "', rutinaEspalda = '"
                                 + editDescripcion.getText().toString() + "', rutinaDescripcion = '" + editDescripcion.getText().toString() + "' WHERE nombreRutina = '" + referencia + "'");
                         h.initializeData(v.getContext());
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.main_fragment, h);
+
+                        ft.addToBackStack(null);
+                        ft.commit();
                     }
 
                 /*
