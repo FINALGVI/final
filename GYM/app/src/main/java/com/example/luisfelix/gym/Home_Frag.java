@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,9 @@ public class Home_Frag extends Fragment {
     public List<Rutina> rutinas;
     public View v;
     public SQLiteDatabase db;
+    public Bundle contenido;
+    String Nombre;
+    TextView textNombre;
 
     public Home_Frag() {
         // Required empty public constructor
@@ -48,6 +52,17 @@ public class Home_Frag extends Fragment {
         *
          */
         v = inflater.inflate(R.layout.recycler, container, false);
+
+        textNombre=v.findViewById(R.id.textNombre);
+        contenido=getArguments();
+        Nombre = getArguments().getString("Nombres");
+
+        BDD con = new BDD(getContext(), "Nombre", null, 1);
+        db = con.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT nombre FROM Nombre WHERE nombre = '" + Nombre + "'", null);
+            textNombre.setText(c.getString(0));
+        db.close();
+
 
         rv=(RecyclerView) v.findViewById(R.id.rv);
         btnNuevaRutina = v.findViewById(R.id.nuevaRutina);

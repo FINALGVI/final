@@ -38,6 +38,7 @@ public class Settings_Frag extends Fragment {
     MaterialButton btnGuardarNombre;
     TextInputEditText editNombre;
     public SQLiteDatabase db;
+    private Home_Frag home_frag;
     View v;
 
     private OnFragmentInteractionListener mListener;
@@ -81,6 +82,7 @@ public class Settings_Frag extends Fragment {
 
         editNombre=v.findViewById(R.id.nombre);
         btnGuardarNombre=v.findViewById(R.id.btnguardar);
+        home_frag=new Home_Frag();
 
         try{
             BDD con = new BDD(v.getContext(), "Nombre", null, 1);
@@ -112,9 +114,14 @@ public class Settings_Frag extends Fragment {
                     .create().show();
                 }else{
                     agregarNombre(nombre);
+
+                    Bundle var = new Bundle();
+                    var.putString("Nombres", nombre.toString());
+                    home_frag.setArguments(var);
                 }
             }
         });
+
         return  v;
     }
 
