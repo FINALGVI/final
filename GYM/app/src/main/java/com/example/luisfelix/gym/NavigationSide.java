@@ -1,6 +1,9 @@
 package com.example.luisfelix.gym;
 //Luis Felix
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +14,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -58,6 +62,39 @@ public class NavigationSide extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        SharedPreferences pref =getSharedPreferences("pref",MODE_PRIVATE);
+        boolean firstStart=pref.getBoolean("firstStart",true);
+
+        if(firstStart) {
+            showStartDialog();
+        }
+    }
+
+    public void showStartDialog(){
+        new AlertDialog.Builder(this)
+                .setTitle("Intrdoduzca su Nombre")
+                .setMessage("Favor introducir su nombre, este mensaje solo sera desplegado la primera vez que entre " +
+                        "a la app pero puede cambiar el nombre que inserto en la parte de settings en el panel de la izquierda.")
+                .setIcon(R.drawable.ic_user)
+                .setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent=new Intent(NavigationSide.this,Settings_Frag.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No Guardar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .create().show();
+        SharedPreferences pref=getSharedPreferences("pref",MODE_PRIVATE);
+        SharedPreferences.Editor editor=pref.edit();
+        editor.putBoolean("firstStart", false).apply();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
