@@ -7,12 +7,10 @@
     android:background="@drawable/fondo"
     tools:context=".informacion">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:layout_width="match_parent"

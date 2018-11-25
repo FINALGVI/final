@@ -1,12 +1,17 @@
 package com.example.luisfelix.gym;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -26,6 +31,11 @@ public class Settings_Frag extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    EditText editNombre;
+    Button btnGuardarNombre;
+    public SQLiteDatabase db;
+    View v;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +74,42 @@ public class Settings_Frag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings_, container, false);
+        v=inflater.inflate(R.layout.fragment_settings_, container, false);
+
+        editNombre=v.findViewById(R.id.nombre);
+        btnGuardarNombre=v.findViewById(R.id.btnguardar);
+
+       /* btnGuardarNombre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nombre=editNombre.getText().toString();
+                if(nombre.isEmpty()){
+                    agregarNombre(nombre);
+                }
+            }
+        });
+        //comente este porque comente el de abajo y este depende del de abajo
+        */
+        return  v;
     }
+
+      /*  public void agregarNombre(String nombre){
+            try{
+                Cursor c = db.rawQuery("select * from Nombre where id=?",null);
+                if(!c.moveToFirst()){
+                    db.execSQL("insert into Nombre(nombre) " + "values('" +nombre+"',null)");
+                }else {
+                    db.execSQL("update Nombre set nombre='"+nombre+"' where id=?");
+                }
+                Toast.makeText(v.getContext(), "Guardado con exito", Toast.LENGTH_SHORT).show();
+
+            }catch (Exception e){
+                Toast.makeText(v.getContext(), "No se pudo guardar", Toast.LENGTH_SHORT).show();
+            }
+        }
+      //  ***lo comente porque no me acuerdo bien de esa parte y tengo sueño jajajaj
+        */
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

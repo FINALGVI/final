@@ -1,7 +1,6 @@
 package com.example.luisfelix.gym;
 //Luis Felix
 
-import android.app.TimePickerDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,14 +12,10 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.util.Calendar;
 
 public class NavigationSide extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Settings_Frag.OnFragmentInteractionListener {
@@ -34,7 +29,6 @@ public class NavigationSide extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private BottomNavigationView navigation;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +45,6 @@ public class NavigationSide extends AppCompatActivity
         tracking_frag = new Tracking_Frag();
         //esto es para que inice el primer fragmento como default
         setFragment(home_frag);
-
-      /*
-        si activan entonces tendran que activar el toolbar en el navigation side xml
-        vendran erroes
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
 
         //para que funcione el navigation side
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -137,7 +124,6 @@ public class NavigationSide extends AppCompatActivity
         //para que funcionene los botones dentro del navigation side
 
         int id = item.getItemId();
-        boolean selected = false;
 
         if (id == R.id.nav_info) {
             app_info_frag = new App_Info_Frag();
@@ -147,12 +133,8 @@ public class NavigationSide extends AppCompatActivity
 
             setting_frag = new Settings_Frag();
             setFragment(setting_frag);
-//            selected=true;
         }
 
-//        if(selected==true){
-//           setFragment(setting_frag);
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

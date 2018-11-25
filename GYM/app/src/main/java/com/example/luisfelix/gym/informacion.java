@@ -1,12 +1,21 @@
 package com.example.luisfelix.gym;
 
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.card.MaterialCardView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +42,8 @@ public class informacion extends Fragment {
     public View v;
     public SQLiteDatabase db;
     public String rutinaNombre;
+
+    private final int Chanel_id=01;
 
 
     @Override
@@ -150,13 +161,43 @@ public class informacion extends Fragment {
                 ft.replace(R.id.main_fragment, agendarRutina2);
                 ft.addToBackStack(null);
                 ft.commit();
+
+          /*
+          este fue el primer intento no tienen nada que ver con el de abajo
+
+               Intent intent = new Intent(getActivity(), Home_Frag.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 0, intent, 0);
+
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), Chanel_id)
+                        .setSmallIcon(R.drawable.ic_agenda)
+                        .setContentTitle(rutinaNombre)
+                        .setContentText(txtInfoDescripcion)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                        .setContentIntent(pendingIntent)
+                     //   .setVisibility()
+                      //  .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                     //   .setWhen()
+                     //   .setVibrate()
+                        .setAutoCancel(true);
+
+
+                      este es otro el que esta en conjunto con las clases java MyReciver y MyNewIntentService
+                      no tienen nada que ver con el de arriba
+
+                Intent notifyIntent = new Intent(getActivity(), MyReciver.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast
+                        (getContext(), NOTIFICATION_REMINDER_NIGHT, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
+                        1000 * 60 * 60 * 24, pendingIntent);*/
+
             }
         });
-
-
 
         // Inflate the layout for this fragment
         return v;
     }
+
 
 }
