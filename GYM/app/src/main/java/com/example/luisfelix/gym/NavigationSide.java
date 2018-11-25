@@ -47,6 +47,7 @@ public class NavigationSide extends AppCompatActivity
         home_frag = new Home_Frag();
         fitness_frag = new Fitness_Frag();
         tracking_frag = new Tracking_Frag();
+        setting_frag = new Settings_Frag();
         //esto es para que inice el primer fragmento como default
         setFragment(home_frag);
 
@@ -80,8 +81,8 @@ public class NavigationSide extends AppCompatActivity
                 .setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent=new Intent(NavigationSide.this,Settings_Frag.class);
-                        startActivity(intent);
+                        setFragment(setting_frag);
+                        dialog.dismiss();
                     }
                 })
                 .setNegativeButton("No Guardar", new DialogInterface.OnClickListener() {
@@ -168,7 +169,7 @@ public class NavigationSide extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-            setting_frag = new Settings_Frag();
+
             setFragment(setting_frag);
         }
 

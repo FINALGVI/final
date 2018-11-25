@@ -1,15 +1,18 @@
 package com.example.luisfelix.gym;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.button.MaterialButton;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -32,8 +35,8 @@ public class Settings_Frag extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    EditText editNombre;
-    Button btnGuardarNombre;
+    MaterialButton btnGuardarNombre;
+    TextInputEditText editNombre;
     public SQLiteDatabase db;
     View v;
 
@@ -79,27 +82,49 @@ public class Settings_Frag extends Fragment {
         editNombre=v.findViewById(R.id.nombre);
         btnGuardarNombre=v.findViewById(R.id.btnguardar);
 
-       /* btnGuardarNombre.setOnClickListener(new View.OnClickListener() {
+        try{
+            BDD con = new BDD(v.getContext(), "Nombre", null, 1);
+            db = con.getWritableDatabase();
+        }catch(Exception e){
+            Toast toast1 =
+                    Toast.makeText(v.getContext(),
+                            "Error al conectar", Toast.LENGTH_SHORT);
+
+            toast1.show();
+        }
+
+        btnGuardarNombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String nombre=editNombre.getText().toString();
-                if(nombre.isEmpty()){
+                if(nombre.isEmpty()) {
+                    final AlertDialog.Builder b =new AlertDialog.Builder(getContext());
+                    b.setMessage("Dejaste el campo vacio")
+                            .setIcon(R.drawable.ic_user)
+                            .setTitle("ALERTA!!!")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            })
+                    .create().show();
+                }else{
                     agregarNombre(nombre);
                 }
             }
         });
-        //comente este porque comente el de abajo y este depende del de abajo
-        */
         return  v;
     }
 
-      /*  public void agregarNombre(String nombre){
+        public void agregarNombre(String nombre){
             try{
-                Cursor c = db.rawQuery("select * from Nombre where id=?",null);
+                Cursor c = db.rawQuery("select * from Nombre",null);
                 if(!c.moveToFirst()){
-                    db.execSQL("insert into Nombre(nombre) " + "values('" +nombre+"',null)");
+                    db.execSQL("insert into Nombre(nombre) values('" +nombre+"')");
                 }else {
-                    db.execSQL("update Nombre set nombre='"+nombre+"' where id=?");
+                    db.execSQL("update Nombre set nombre='"+nombre+"' ");
                 }
                 Toast.makeText(v.getContext(), "Guardado con exito", Toast.LENGTH_SHORT).show();
 
@@ -107,8 +132,7 @@ public class Settings_Frag extends Fragment {
                 Toast.makeText(v.getContext(), "No se pudo guardar", Toast.LENGTH_SHORT).show();
             }
         }
-      //  ***lo comente porque no me acuerdo bien de esa parte y tengo sueño jajajaj
-        */
+
 
 
     // TODO: Rename method, update argument and hook method into UI event
