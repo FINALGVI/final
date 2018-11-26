@@ -18,6 +18,7 @@ public class BDD extends SQLiteOpenHelper {
 
     public BDD(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+
     }
 
     //Método onCreate de la base de datos
@@ -41,17 +42,17 @@ public class BDD extends SQLiteOpenHelper {
         db.execSQL(crearTabla3);
     }
 
-    /*public ArrayList llenar_lv() {
+    public ArrayList llenar_lv() {
         ArrayList<String> lista = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
         String q = "SELECT * FROM Salud";
         Cursor registros = database.rawQuery(q, null);
         if (registros.moveToFirst()) {
             do {
-                lista.add(registros.getString(0) + "\n" + registros.getString(1)
-                        + " " + registros.getString(2) + "\n" + registros.getString(3));
+                lista.add(registros.getString(4)+"\n"+ registros.getString(1)+" vasos de agua"
+                        + "\t, "+registros.getString(2)+" libras." + "\n" + registros.getString(3));
             } while (registros.moveToNext());
         }
         return lista;
-    }*/
+    }
 }
