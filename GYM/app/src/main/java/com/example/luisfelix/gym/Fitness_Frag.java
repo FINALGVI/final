@@ -45,6 +45,7 @@ public class Fitness_Frag extends Fragment {
     }
 
     public SQLiteDatabase db;
+    public SQLiteDatabase db1;
     View v;
 
     @Override
@@ -191,13 +192,13 @@ public class Fitness_Frag extends Fragment {
 
     void traerNombre2(Context context, TextView texto){
         BDD con2 = new BDD(context, "Nombre", null, 2);
-        db = con2.getWritableDatabase();
-        Cursor c3 = db.rawQuery("SELECT nombre FROM Nombre WHERE id >= 1", null);
+        db1 = con2.getWritableDatabase();
+        Cursor c3 = db1.rawQuery("SELECT nombre FROM Nombre WHERE id >= 1", null);
         while (c3.moveToNext())
         {
-            texto.setText(c3.getString(0)+" aqui pones cosas mas personales:");
+            texto.setText(c3.getString(0)+" aqui pones cosas más personales:");
         }
-        db.close();
+        db1.close();
     }
 
 
