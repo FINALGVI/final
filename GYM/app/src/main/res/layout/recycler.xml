@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background2"
     tools:context=".Home_Frag">
 
 
@@ -25,10 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp"
-            android:textStyle="italic" />
+            android:textSize="20dp" />
 
         <ScrollView
             android:layout_width="match_parent"
