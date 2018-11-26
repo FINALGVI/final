@@ -1,8 +1,11 @@
 package com.example.luisfelix.gym;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class BDD extends SQLiteOpenHelper {
 
@@ -37,4 +40,18 @@ public class BDD extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE if exists Nombre");
         db.execSQL(crearTabla3);
     }
+
+    /*public ArrayList llenar_lv() {
+        ArrayList<String> lista = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        String q = "SELECT * FROM Salud";
+        Cursor registros = database.rawQuery(q, null);
+        if (registros.moveToFirst()) {
+            do {
+                lista.add(registros.getString(0) + "\n" + registros.getString(1)
+                        + " " + registros.getString(2) + "\n" + registros.getString(3));
+            } while (registros.moveToNext());
+        }
+        return lista;
+    }*/
 }

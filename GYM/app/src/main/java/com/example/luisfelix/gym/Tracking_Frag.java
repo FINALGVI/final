@@ -9,7 +9,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 /**
@@ -19,6 +25,8 @@ public class Tracking_Frag extends Fragment {
     TextView textNombre3;
     public SQLiteDatabase db;
     View v;
+//    ListView lista;
+//    ArrayList<String> arreglo;
 
     public Tracking_Frag() {
         // Required empty public constructor
@@ -30,8 +38,25 @@ public class Tracking_Frag extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v= inflater.inflate(R.layout.fragment_tracking_, container, false);
-        textNombre3=v.findViewById(R.id.textNombre3);
-        traerNombre3(v.getContext(), textNombre3);
+
+       /* lista = v.findViewById(R.id.Lista);
+
+        arreglo = new ArrayList<String>();
+        BDD database=new BDD(getContext(), null, null, 2);
+        arreglo=database.llenar_lv();
+        final ArrayAdapter<String> adaptador =
+                new ArrayAdapter<String>(getActivity(), android.R.layout.simple_expandable_list_item_1, arreglo);
+        lista.setAdapter(adaptador);
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                         @Override
+                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                             Toast.makeText(getContext(), arreglo.get(position), Toast.LENGTH_LONG).show();
+                                         }
+                                     });*/
+
+                textNombre3=v.findViewById(R.id.textNombre3);
+                traerNombre3(v.getContext(), textNombre3);
         return v;
     }
 
