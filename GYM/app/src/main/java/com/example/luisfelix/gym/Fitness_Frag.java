@@ -145,7 +145,7 @@ public class Fitness_Frag extends Fragment {
         
         return time;
     }
-
+/*Sergio*/
     public void agregar(String agua, String peso, String hora){
 
         try{
