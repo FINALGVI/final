@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.design.button.MaterialButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,7 +86,7 @@ public class Settings_Frag extends Fragment {
         home_frag=new Home_Frag();
 
         try{
-            BDD con = new BDD(v.getContext(), "Nombre", null, 1);
+            BDD con = new BDD(v.getContext(), "Nombre", null, 2);
             db = con.getWritableDatabase();
         }catch(Exception e){
             Toast toast1 =
@@ -115,9 +116,10 @@ public class Settings_Frag extends Fragment {
                 }else{
                     agregarNombre(nombre);
 
-                    Bundle var = new Bundle();
-                    var.putString("Nombres", nombre.toString());
-                    home_frag.setArguments(var);
+                    home_frag=new Home_Frag();
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.main_fragment, home_frag);
+                    fragmentTransaction.commit();
                 }
             }
         });

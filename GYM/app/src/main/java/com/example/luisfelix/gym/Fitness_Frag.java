@@ -2,6 +2,7 @@ package com.example.luisfelix.gym;
 
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
@@ -34,6 +36,7 @@ public class Fitness_Frag extends Fragment {
     TextView textAgua;
     EditText editPeso, editLevantarse, editAcostarse;
     Button btnGuardar;
+    TextView textNombre2;
     int contadorAgua=0;
     int peso;
 
@@ -51,7 +54,7 @@ public class Fitness_Frag extends Fragment {
         v=inflater.inflate(R.layout.fragment_fitness, container, false);
 
         try{
-            BDD con = new BDD(v.getContext(), "Salud", null, 1);
+            BDD con = new BDD(v.getContext(), "Salud", null, 2);
             db = con.getWritableDatabase();
         }catch(Exception e){
             Toast toast1 =
@@ -64,6 +67,8 @@ public class Fitness_Frag extends Fragment {
         masAgua=v.findViewById(R.id.btnAgua_mas);
         menosAgua=v.findViewById(R.id.btnAgua_menos);
         textAgua=v.findViewById(R.id.CantidadAgua);
+
+
 
         masAgua.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +110,10 @@ public class Fitness_Frag extends Fragment {
 
             }
         });
+
+        textNombre2=v.findViewById(R.id.textNombre2);
+        traerNombre2(v.getContext(), textNombre2);
+
         return v;
     }
 
@@ -179,5 +188,17 @@ public class Fitness_Frag extends Fragment {
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
     }
+
+    void traerNombre2(Context context, TextView texto){
+        BDD con2 = new BDD(context, "Nombre", null, 2);
+        db = con2.getWritableDatabase();
+        Cursor c3 = db.rawQuery("SELECT nombre FROM Nombre WHERE id >= 1", null);
+        while (c3.moveToNext())
+        {
+            texto.setText(c3.getString(0)+" aqui pones cosas mas personales:");
+        }
+        db.close();
+    }
+
 
 }

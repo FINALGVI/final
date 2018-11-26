@@ -74,7 +74,7 @@ public class AgendarRutina2 extends Fragment {
 
         btnAceptarRutina = v.findViewById(R.id.btnRutina);
 
-        BDD con = new BDD(v.getContext(), "Rutinas", null, 1);
+        BDD con = new BDD(v.getContext(), "Rutinas", null, 2);
         db = con.getWritableDatabase();
 
         /*

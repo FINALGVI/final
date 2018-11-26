@@ -76,7 +76,7 @@ public class informacion extends Fragment {
         btnEditar = v.findViewById(R.id.btnEditar);
         btnEliminar = v.findViewById(R.id.btnEliminar);
 
-        BDD con = new BDD(v.getContext(), "Rutinas", null, 1);
+        BDD con = new BDD(v.getContext(), "Rutinas", null, 2);
         db = con.getWritableDatabase();
 
         /*

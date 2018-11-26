@@ -24,7 +24,9 @@
             android:id="@+id/textNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="klk"/>
+            android:layout_marginTop="50dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30dp"/>
 
         <ScrollView
             android:layout_width="match_parent"

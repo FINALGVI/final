@@ -33,8 +33,6 @@ public class Home_Frag extends Fragment {
     public List<Rutina> rutinas;
     public View v;
     public SQLiteDatabase db;
-    public Bundle contenido;
-    String Nombre;
     TextView textNombre;
 
     public Home_Frag() {
@@ -54,14 +52,6 @@ public class Home_Frag extends Fragment {
         v = inflater.inflate(R.layout.recycler, container, false);
 
         textNombre=v.findViewById(R.id.textNombre);
-        contenido=getArguments();
-        Nombre = getArguments().getString("Nombres");
-
-        BDD con = new BDD(getContext(), "Nombre", null, 1);
-        db = con.getWritableDatabase();
-        Cursor c = db.rawQuery("SELECT nombre FROM Nombre WHERE nombre = '" + Nombre + "'", null);
-            textNombre.setText(c.getString(0));
-        db.close();
 
 
         rv=(RecyclerView) v.findViewById(R.id.rv);
@@ -78,6 +68,7 @@ public class Home_Frag extends Fragment {
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
 
+        traerNombre(v.getContext(), textNombre);
         initializeData(v.getContext());
         initializeAdapter();
 
@@ -123,7 +114,7 @@ public class Home_Frag extends Fragment {
         *
          */
 
-        BDD con = new BDD(context, "Rutinas", null, 1);
+        BDD con = new BDD(context, "Rutinas", null, 2);
         db = con.getWritableDatabase();
         rutinas = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT  nombreRutina, rutinaDescripcion FROM Rutinas", null);
@@ -142,6 +133,17 @@ public class Home_Frag extends Fragment {
     void initializeAdapter(){
         CardViewAdapter adapter = new CardViewAdapter(rutinas);
         rv.setAdapter(adapter);
+    }
+
+    void traerNombre(Context context, TextView texto){
+        BDD con2 = new BDD(context, "Nombre", null, 2);
+        db = con2.getWritableDatabase();
+        Cursor c3 = db.rawQuery("SELECT nombre FROM Nombre WHERE id >= 1", null);
+        while (c3.moveToNext())
+        {
+            texto.setText("Hola "+c3.getString(0)+", estas son tus rutinas:");
+        }
+        db.close();
     }
 
 }
