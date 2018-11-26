@@ -21,10 +21,6 @@
             </intent-filter>
         </activity>
         <!--Esto es de la notificacion-->
-        <service
-            android:name=".MyNewIntentService"
-            android:exported="false" >
-        </service>
         <!--Esta aqui-->
     </application>
 

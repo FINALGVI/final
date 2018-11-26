@@ -162,36 +162,6 @@ public class informacion extends Fragment {
                 ft.addToBackStack(null);
                 ft.commit();
 
-          /*
-          este fue el primer intento no tienen nada que ver con el de abajo
-
-               Intent intent = new Intent(getActivity(), Home_Frag.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 0, intent, 0);
-
-                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getContext(), Chanel_id)
-                        .setSmallIcon(R.drawable.ic_agenda)
-                        .setContentTitle(rutinaNombre)
-                        .setContentText(txtInfoDescripcion)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                        .setContentIntent(pendingIntent)
-                     //   .setVisibility()
-                      //  .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                     //   .setWhen()
-                     //   .setVibrate()
-                        .setAutoCancel(true);
-
-
-                      este es otro el que esta en conjunto con las clases java MyReciver y MyNewIntentService
-                      no tienen nada que ver con el de arriba
-
-                Intent notifyIntent = new Intent(getActivity(), MyReciver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast
-                        (getContext(), NOTIFICATION_REMINDER_NIGHT, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                AlarmManager alarmManager = (AlarmManager) getContext().getSystemService(Context.ALARM_SERVICE);
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis(),
-                        1000 * 60 * 60 * 24, pendingIntent);*/
-
             }
         });
 
