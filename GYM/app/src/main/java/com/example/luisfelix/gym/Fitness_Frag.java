@@ -173,7 +173,7 @@ public class Fitness_Frag extends Fragment {
                             minutosDormidos = minLevantarseDef - minDormirDef;
                         }
                     }
-                    Toast prueba = Toast.makeText(v.getContext(), horaInsertar, Toast.LENGTH_LONG);
+                    Toast prueba = Toast.makeText(v.getContext(), horaInsertar, Toast.LENGTH_SHORT);
                     prueba.show();
 
                     agregar(aguaRes, pesoRes, horaInsertar);//agrega a la base de datos
@@ -294,7 +294,8 @@ public class Fitness_Frag extends Fragment {
         Cursor c3 = db1.rawQuery("SELECT nombre FROM Nombre WHERE id >= 1", null);
         while (c3.moveToNext())
         {
-            texto.setText(c3.getString(0)+", aquí hay algunas funciones que te pueden ayudar a llevar un control de tu salud:");
+            texto.setText(c3.getString(0)+
+                    ", aquí hay algunas funciones que te pueden ayudar a llevar un control de tu salud:");
         }
         db1.close();
     }
