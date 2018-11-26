@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background2"
     tools:context=".Tracking_Frag">
 
     <!-- TODO: Update blank fragment layout -->
@@ -14,12 +13,33 @@
         android:id="@+id/textNombre3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textAlignment="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="20dp" />
+        android:textSize="20dp"/>
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textNombre3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"/>
+
+        <ListView android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/textNombre3"
+            android:layout_margin="20dp"
+            android:textAlignment="center"/>
+    </RelativeLayout>
+
 
    <!-- <ListView
         android:id="@+id/Lista"
